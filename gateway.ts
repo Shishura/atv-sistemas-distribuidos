@@ -63,6 +63,12 @@ function enviarLote(lote: LoteLeituras): Promise<ResultadoMedias> {
       socket.destroy();
       reject(erro);
     };
+    
+    socket.setTimeout(10000,() =>{
+      falhar(new Error('tempo limite de resposta do microsserviço atingido'));
+    })
+
+
     socket.on('connect', () => socket.write(`${JSON.stringify(lote)}\n`));
     aoReceberLinhas(socket, (linha) => {
       if (concluido) return;
