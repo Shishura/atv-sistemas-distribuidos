@@ -74,7 +74,12 @@ function enviarLote(lote: LoteLeituras): Promise<ResultadoMedias> {
       if (concluido) return;
       try {
         const resposta = JSON.parse(linha) as ResultadoMedias;
-        if (resposta.tipo !== 'medias') throw new Error('resposta de erro ou formato inesperado');
+        if (
+          resposta.tipo !== 'medias' ||
+          resposta.quantidadeLeituras !== lote.leituras.length
+        ) {
+          throw new Error('resposta inesperada do microsserviço');
+        }
         concluido = true;
         socket.end();
         resolve(resposta);
