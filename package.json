@@ -1,0 +1,17 @@
+{
+  "name": "simulacao-rede-sensores-iot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Demonstração didática de comunicação distribuída com sockets TCP em Node.js e TypeScript.",
+  "scripts": {
+    "sensor": "tsx sensor.ts",
+    "gateway": "tsx gateway.ts",
+    "microservico": "tsx microservico.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
